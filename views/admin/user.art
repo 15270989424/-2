@@ -1,0 +1,139 @@
+﻿<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		
+		
+		<title></title>
+
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
+	</head>
+
+	<body>
+<div class="user">
+	<div class="user-left">
+
+		<div>
+			<h3 class="">
+					<i class="fa fa-id-card-o" aria-hidden="true"> 用户:{{userInfo && userInfo.username}}</i>
+					</h3>
+			<div class="list-group">
+				<ul>
+					<li>
+						<a class="list-group-item" href="#"><i class="fa fa-home fa-fw" aria-hidden="true"></i>&nbsp; 首页</a>
+					</li>
+					<li>
+						<a class="list-group-item" href="/admin/config"><i class="fa fa-book fa-fw" aria-hidden="true"></i>&nbsp; 页面数据</a>
+					</li>
+					<li>
+						<a class="list-group-item" href="#"><i class="fa fa-pencil fa-fw" aria-hidden="true"></i>&nbsp; 后台应用编辑</a>
+					</li>
+					<li>
+						<a class="list-group-item" href="#"><i class="fa fa-cog fa-fw" aria-hidden="true"></i>&nbsp; 系统设置</a>
+					</li>
+					<li style="background: #353D44;">
+						<a class="list-group-item" href="#"><i class="fa fa-user-circle-o" aria-hidden="true"></i></i>&nbsp; 用户管理</a>
+					</li>
+				</ul>
+
+			</div>
+		</div>
+
+	</div>
+
+	<div class="user-connect">
+		<h2> 用户 </h2>
+
+		<div class="btn-tjyh">
+			 <a href="/admin/user-edit" style='color:white'>新增用户</a>
+		</div>
+
+		<table class="user-table" border="1px" cellpadding="0" cellspacing="0">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>用户名</th>
+					<th>邮箱</th>
+					<th>角色</th>
+					<th>状态</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+			<tbody>
+				{{each users}}
+				<tr>
+					<td>{{@$value._id}}</td>
+					<td>{{$value.username}}</td>
+					<td>{{$value.email}}</td>
+					<td>{{$value.role == 'admin' ? '超级管理员': '普通用户'}}</td>
+					<td>{{$value.state == 0 ? '启用': '禁用'}}</td>
+					<td>
+						<a href="/admin/user-edit?id={{@$value._id}}"><i class="fa fa-pencil-square-o" aria-hidden="true" style="color: cornflowerblue;"></i></a>
+
+						<a href="#" style="color: red;" class= "user-tckbtn"><i class="fa fa-times-circle delete" aria-hidden="true" data-id="{{@$value._id}}"></i></a>
+					</td>
+				</tr>
+				{{/each}}
+
+			</tbody>
+		</table>
+		<ul class="pagination">
+			<li style="display: <%=page-1 < 1 ? 'none' : 'inline' %>">
+				<a href="/admin/user?page=<%=page-1%>">
+					<span>&laquo;</span>
+				</a>
+			</li>
+			<% for (var i = 1; i <= total; i++) { %>
+			<li>
+				<a href="/admin/user?page=<%=i %>">{{i}}</a>
+			</li>
+			<% } %>
+			<li style="display: <%= page-0+1 > total ? 'none' : 'inline' %>">
+				<a href="/admin/user?page=<%=page-0+1%>">
+					<span>&raquo;</span>
+				</a>
+			</li>
+		</ul>
+
+	</div>
+
+</div>
+
+
+<div class="user-tck">
+			<form action="/admin/delete" method="get">
+
+			<h2>请确认</h2>
+			<p>您确定要删除这个用户吗?</p>
+			  <input type="hidden" name="id" id="deleteUserId">
+			<div>
+				<button type="button" class="user-tckqx">取消</button><button type="submit" class="user-tckqd">确定</button>
+			</div>
+			
+			</form>
+		</div>
+		
+		<script src="js/jquery.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$('.user-tckbtn').click(function(){
+				$('.user-tck').css("display","block")
+				
+			})
+			$('.user-tckqx').click(function(){
+				$('.user-tck').css("display","none")
+			})
+			$('.delete').click(function(){
+			 // 获取用户id
+            var id = $(this).attr('data-id');
+         //   console.log(id)
+            // 将要删除的用户id存储在隐藏域中
+            $('#deleteUserId').val(id);
+			})
+		</script>
+		
+		
+	</body>
+
+</html>

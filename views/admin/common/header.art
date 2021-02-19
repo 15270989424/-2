@@ -1,0 +1,24 @@
+<!-- 头部 -->
+ <link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+<div class="header">
+
+    <!-- 用户信息 -->
+    <div class="info">
+        <div class="profile dropdown fr">
+            <span class="btn dropdown-toggle" data-toggle="dropdown">
+				{{userInfo && userInfo.username}}
+				<span class="caret"></span>
+            </span>
+            <ul class="dropdown-menu">
+                <li><a href="user-edit.html">个人资料</a></li>
+                <li><a href="/admin/logout">退出登录</a></li>
+            </ul>
+        </div>
+    </div>
+    <!-- /用户信息 -->
+</div>
+<!-- /头部 -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<script src="./js/jquery.js" type="text/javascript" charset="utf-8"></script>

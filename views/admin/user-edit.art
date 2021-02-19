@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		
+		
+		<title></title>
+
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
+	</head>
+
+		<div class="user-left">
+
+				<div>
+					<h3 class="">
+					<i class="fa fa-id-card-o" aria-hidden="true"> 用户:{{user && user.username}}</i>
+					</h3>
+					<div class="list-group">
+						<ul>
+							<li>
+								<a class="list-group-item" href="#"><i class="fa fa-home fa-fw" aria-hidden="true"></i>&nbsp; 首页</a>
+							</li>
+							<li>
+								<a class="list-group-item" href="#"><i class="fa fa-book fa-fw" aria-hidden="true"></i>&nbsp; 页面数据</a>
+							</li>
+							<li>
+								<a class="list-group-item" href="#"><i class="fa fa-pencil fa-fw" aria-hidden="true"></i>&nbsp; 后台应用编辑</a>
+							</li>
+							<li>
+								<a class="list-group-item" href="#"><i class="fa fa-cog fa-fw" aria-hidden="true"></i>&nbsp; 系统设置</a>
+							</li>
+							<li style="background: #353D44;">
+								<a class="list-group-item" href="#"><i class="fa fa-user-circle-o" aria-hidden="true"></i></i>&nbsp; 用户管理</a>
+							</li>
+						</ul>
+
+					</div>
+				</div>
+
+			</div>
+				<div class="user-connect">
+				<h2 >{{ button}}用户 </h2>
+				<h4> <p class="tips">{{message}}</p></h4>
+				 <form action="{{link}}" method="post" class="user-edit-form">
+				 	<p>用户名：</p>
+				 	<p>
+				 		<input name="username" type="text"  placeholder="请输入用户名"  value="{{user && user.username}}"/>
+				 	</p>
+				 	<p>
+				 		邮箱：
+				 	</p>
+				 	<p>
+				 		<input name="email" type="email"  placeholder="请输入邮箱" value="{{user && user.email}}" />
+				 	</p>
+				 	<p>密码：</p>
+				 	<p>
+				 		<input name="password" type="password" value="" />
+				 	</p>
+				 	<p>
+				 		角色：
+				 	</p>
+				 	<p>
+				 		<select name="role">
+				 			<option  value="normal" {{user && user.role == 'normal' ? 'selected' : ''}}>普通用户</option>
+				 			<option value="admin" {{user && user.role == 'admin' ? 'selected' : ''}}>超级管理员</option>
+				 		</select>
+				 	</p>
+				 	<p>状态：</p>
+				 	<p>
+				 		<select name="state">
+				 			<option value="0" {{user && user.state == '0' ? 'selected' : ''>启动</option>
+				 			<option value="1" {{user && user.state == '1' ? 'selected' : ''>暂停</option>
+				 		</select>
+				 	</p>
+				 	<p>
+				 		<input type="submit" value="提交" class="user-edit-form-btn" style="height: 40px;
+	width:80px;
+	line-height: 40px;
+	font-weight: 700;"/>
+				 	</p>
+				 	
+				 	
+				 	
+				 </form>
+	
+
+			</div>
+</body>
+
+</html>

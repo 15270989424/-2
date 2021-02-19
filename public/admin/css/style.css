@@ -1,0 +1,221 @@
+body, ul {
+	margin: 0;
+}
+
+body {
+	font-size: 18px;
+	font-family: 'Microsoft YaHei', 'Arial';
+	
+}
+
+ul {
+	list-style: none;
+	padding: 0;
+}
+
+a, a:hover {
+	text-decoration: none;
+}
+
+a:hover {
+
+}
+
+.user{
+	position: relative;
+	
+	height: 100%;
+}
+.user-left{
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 180px;
+	background: #3c444d;
+	height: 100%;
+	
+}
+
+.user-left h3{
+	padding: 10px 15px;
+	color: wheat;
+	font-size: 18px;
+	text-align: center;
+}
+.list-group-item {
+    display: block;
+    padding: 10px 15px;
+    margin-bottom: -1px;
+    color: white;
+    text-decoration: none;
+}
+.list-group a{
+	font-size: 15px;
+    color: #d6d7d9;
+    display: block;
+    line-height: 30px;
+    padding-left: 22px;
+    background-repeat: no-repeat;
+    background-size: 16px auto;
+    background-position: 25px 14px;
+    border-left: #404040 2px solid;
+}
+.list-group li:hover{
+	background-color: #353d44;
+	
+}
+.user-connect{
+	margin: 20px 0px 20px 180px;
+	width: calc(100%-180px);
+	height: 100%;
+}
+.user-connect h2{
+	font-size: 40px;
+	font-weight: 700;
+	padding: 50px 0 0 50px;
+	}
+.user-connect h4{
+	font-size: 20px;
+	font-weight: 700;
+	padding-left: 10%;
+	background: #CECECE;
+	height: 60px;
+	line-height: 60px;
+	}
+.btn-tjyh{
+	height: 46px;
+	width: 100px;
+	line-height: 46px;
+	text-align: center;
+	cursor: pointer;
+	background: dodgerblue;
+	border-radius: 10px ;
+	color: white;
+	font-size: 18px;
+	position: absolute;
+	right: 10%;
+	font-weight: 700;
+	
+}
+.user-table{
+	margin:100px 0 120px 40px;
+	box-shadow: 0 1px 2px 0 rgba(0,0,0,.1);
+	width: 90%;
+	text-align: center;
+	color: black;
+	font-size: 18px;
+	 border: 1px solid #ddd;
+	 font-size: 16px;
+    color: #606266;
+}
+
+.user-table tr{
+	height: 50px;
+}
+
+.user-tck{
+	position: fixed;
+	left: 50%;
+	top: 50%;
+	width: 40%;
+	height: 250px;
+	box-shadow: 0 0 30px #ccc;
+	top: 25%;
+    transform: translateX(-50%);
+    border: #cecece;
+   /*border: 1px solid black;*/
+    background: white;
+    z-index: 99;
+    display: none;
+}
+.user-tck h2{
+	padding: 0 5% 15px;
+	border-bottom: 2px solid dodgerblue;
+	
+}
+.user-tck p{
+	padding: 10px 10px 30px;
+  border-bottom: 2px solid dodgerblue;
+}
+.user-tck div{
+	text-align: right;
+}
+.user-tck div button{
+	margin: 10px 16px;
+    height: 36px;
+    width: 60px;
+	
+}
+.user-tck div button:hover{
+	opacity: 0.7;
+}
+.user-tck .user-tckqd{
+	background: deepskyblue;
+	border: 0;
+}
+
+
+.pagination{
+	display: inline-block;
+    padding-left: 0;
+   
+    margin: 20px 0 20px 40px;
+    border-radius: 4px;
+}
+.pagination>li {
+    display: inline;
+}
+.pagination>li>a, .pagination>li>span {
+    position: relative;
+    float: left;
+    padding: 16px 22px;
+    /*margin-left: 10px;*/
+    line-height: 1.42857143;
+    color: #337ab7;
+    text-decoration: none;
+    background-color: #fff;
+    border: 1px solid #ddd;
+}
+
+.user-edit-form{
+	margin: 20px 5%;
+	box-shadow: 1px 1px 3px #ccc;
+	padding:20px 5%;
+}
+.user-edit-form input,select{
+	width: 99%;
+	height: 30px;
+	border-radius: 5px;
+	border: 2px solid #337AB7;
+	padding-left: 6px;
+	
+}
+.user-edit-form select{
+	height: 38px;
+	width: 100%;
+	
+}
+
+.user-edit-form input,select:focus{
+	outline: none;
+}
+.user-edit-form-btn{
+	
+	color: white;
+	text-align: center;
+	background: linear-gradient(100deg,#1c5de7,#1c91e7);
+	cursor: pointer;
+	}
+.ssg-headbtn button{
+	height: 36px;
+    width: 120px;
+    margin: 0 5%;
+    border-radius: 5px;
+   
+}
+.ssg-tab tr,th,td{
+	border-left: 0px;
+	border-right: 0px;
+	border-bottom: 0px;
+}
+
