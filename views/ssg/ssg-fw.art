@@ -6,10 +6,31 @@
 		
 		
 		<title></title>
-
 		<link rel="stylesheet" type="text/css" href="../admin/css/style.css"/>
+		 <!-- Bootstrap CSS -->
+    	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 		<link rel="stylesheet" type="text/css" href="../admin/css/font-awesome.min.css" />
-		<link rel="stylesheet" type="text/css" href="css/ssg.css"/>
+	
+		<style>
+		h3{
+			margin:20px 0;
+		}
+		.list-group a{
+			border:0;
+			background: #3c444d;
+			padding:15px 20px;
+		}
+		.list-group a:hover{
+			color: lightsteelblue;
+		}
+		.user-connect h2{
+			margin-top:20px
+		}
+		.user-connect table{
+			max-width:92%
+		}
+		
+		</style>
 	</head>
 
 	<body>
@@ -18,7 +39,7 @@
 
 		<div>
 			<h3 class="">
-					<i class="fa fa-id-card-o" aria-hidden="true"> 用户</i>
+					<i class="fa fa-id-card-o" aria-hidden="true"> 用户{{userInfo && userInfo.username}}</i>
 					</h3>
 			<div class="list-group">
 				<ul>
@@ -26,7 +47,7 @@
 						<a class="list-group-item" href="#"><i class="fa fa-home fa-fw" aria-hidden="true"></i>&nbsp; 首页</a>
 					</li>
 					<li style="background: #353D44;">
-						<a class="list-group-item" href="#"><i class="fa fa-book fa-fw" aria-hidden="true"></i>&nbsp; 页面数据</a>
+						<a class="list-group-item active" href="#"><i class="fa fa-book fa-fw" aria-hidden="true"></i>&nbsp; 页面数据</a>
 					</li>
 					<li>
 						<a class="list-group-item" href="#"><i class="fa fa-pencil fa-fw" aria-hidden="true"></i>&nbsp; 后台应用编辑</a>
@@ -35,7 +56,7 @@
 						<a class="list-group-item" href="#"><i class="fa fa-cog fa-fw" aria-hidden="true"></i>&nbsp; 系统设置</a>
 					</li>
 					<li >
-						<a class="list-group-item" href="#"><i class="fa fa-user-circle-o" aria-hidden="true"></i></i>&nbsp; 用户管理</a>
+						<a class="list-group-item" href="/admin/user"><i class="fa fa-user-circle-o" aria-hidden="true"></i></i>&nbsp; 用户管理</a>
 					</li>
 				</ul>
 
@@ -45,65 +66,78 @@
 	</div>
 
 	<div class="user-connect">
-		<h2>页面数据 </h2>
-		<p class="ssg-headbtn">
-			<a href="#"><button style="color: #fff;
-    background-color: #20a53a;
-    border: 0;">访问量</button></a><a href="#"><button style="margin-left: 0 ;">复制量</button></a>
+		<h2 >复制数据 </h2>
+		<p class="ssg-headbtn" style="margin-top:30px">
+			<a href="/admin/config"><button class="btn btn-secondary">访问量</button></a><a href="#"><button class="btn btn-primary" style="margin-left:0">复制量</button></a>
 		</p>
 			
 		
 	
 
-<table class="user-table" border="1px" cellpadding="0" cellspacing="0">
+<table class="user-table table table-striped  table-bordered table-hover table-dark">
 			<thead class="ssg-tab">
 				<tr>
-					<th style="width: 25%;">访问来源</th>
-					<th style="width: 14%;">访问时间</th>
-					<th style="width: 14%;">访问ip</th>
-					<th style="width: 14%;">地址</th>
-					<th style="width: 14%;">访问微信</th>
-					<th style="width: 14%;">访问次数</th>
+					<th style="width: 35%;overflow: hidden;text-align:center;">复制来源</th>
+					<th style="width: 15%;">复制时间</th>
+					<th style="width: 15%;">访问ip</th>
+					<th style="width: 15%;">地址</th>
+					<th style="width: 10%;">复制微信</th>
+					<th style="width: 10%;">复制次数</th>
 				</tr>
 			</thead>
 			<tbody>
 			{{each users}}
 				<tr>
-					<td>{{@$value._id}}</td>
-					<td>{{$value.username}}</td>
-					<td>{{$value.email}}</td>
-					<td>{{$value.role == 'admin' ? '超级管理员': '普通用户'}}</td>
-					<td>{{$value.state == 0 ? '启用': '禁用'}}</td>
-					<td>
-						{{$value.email}}
-					</td>
+					<td style="text-align: left; padding-left: 6%;">{{@$value.curl}}</td>
+					<td>{{$value.ctime}}</td>
+					<td>{{$value.cip}}</td>
+					<td>{{$value.ccity}}</td>
+					<td>{{$value.cwx}}</td>
+					<td>{{$value.cwechar}}</td>
 				</tr>
 				{{/each}}
 
 			</tbody>
 		</table>
 		<ul class="pagination">
-			<li style="display: <%=page-1 < 1 ? 'none' : 'inline' %>">
-				<a href="/admin/user?page=<%=page-1%>">
+			<li class="page-item" style="display: <%=page-1 < 1 ? 'none' : 'inline' %>">
+				<a href="/admin/fz?page=<%=page-1%>" class="page-link">
 					<span>&laquo;</span>
 				</a>
+			
+			<li class="page-item" style="display: <%=page-1 < 1 ? 'none' : 'inline' %>">
+				<a href="/admin/fz?page=<%=page-1%>" class="page-link"><%=page-1%></a>
 			</li>
-			<% for (var i = 1; i <= total; i++) { %>
-			<li>
-				<a href="/admin/user?page=<%=i %>">{{i}}</a>
+
+			<li class="page-item">
+				<a href="/admin/fz?page=<%=page%>" class="page-link"><%=page%></a>
+			</li>	
+
+			<li class="page-item" style="display: <%= page-0+1 > total ? 'none' : 'inline' %>">
+				<a href="/admin/fz?page=<%=page-0+1%>" class="page-link"><%=page-0+1%></a>
 			</li>
-			<% } %>
-			<li style="display: <%= page-0+1 > total ? 'none' : 'inline' %>">
-				<a href="/admin/user?page=<%=page-0+1%>">
+			
+			<li class="page-item" style="display: <%= page-0+1 > total ? 'none' : 'inline' %>">
+				<a href="/admin/fz?page=<%=page-0+1%>" class="page-link">
 					<span>&raquo;</span>
 				</a>
 			</li>
 		</ul>
 
+
 	</div>
 
 </div>
 
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <!--依赖的jQuery-->
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <!--bootstrap组件的js-->
+    <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <!--bootstrap组件的js-->
+    <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 
 	</body>

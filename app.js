@@ -45,10 +45,14 @@ app.engine('art', require('express-art-template'));
 app.use(express.static(path.join(__dirname, 'public')))
 
 // 引入路由模块
+	
+const fzjk = require('./api/fzjk')
+const fwjk = require('./api/fwjk')
 const home = require('./route/home');
 const admin = require('./route/admin');
 const ssg = require('./config/ssg')
-const config = require('./config/config')
+const config = require('./route/config/fw')
+const fz = require('./route/config/fz')
 
 // 拦截请求 判断用户登录状态
 app.use('/admin', require('./middleware/loginGuard'));
@@ -58,10 +62,13 @@ app.all("/",function(req,res){
 
 
 // 为路由匹配请求路径
+app.use('/fzjk', fzjk);
+app.use('/fwjk', fwjk);
 app.use('/home', home);
 app.use('/admin', admin);
 app.use('/ssg',ssg)
 app.use('/admin/config',config)
+app.use('/admin/fz',fz)
 
 app.use((err, req, res, next) => {
 	// 将字符串对象转换为对象类型

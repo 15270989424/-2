@@ -17,9 +17,6 @@ a, a:hover {
 	text-decoration: none;
 }
 
-a:hover {
-
-}
 
 .user{
 	position: relative;
@@ -65,14 +62,14 @@ a:hover {
 	
 }
 .user-connect{
-	margin: 20px 0px 20px 180px;
+	margin: 0px 0px 00px 180px;
 	width: calc(100%-180px);
 	height: 100%;
 }
 .user-connect h2{
 	font-size: 40px;
 	font-weight: 700;
-	padding: 50px 0 0 50px;
+	padding: 0 0 0 50px;
 	}
 .user-connect h4{
 	font-size: 20px;
@@ -83,22 +80,23 @@ a:hover {
 	line-height: 60px;
 	}
 .btn-tjyh{
-	height: 46px;
-	width: 100px;
-	line-height: 46px;
-	text-align: center;
-	cursor: pointer;
-	background: dodgerblue;
-	border-radius: 10px ;
-	color: white;
-	font-size: 18px;
-	position: absolute;
-	right: 10%;
-	font-weight: 700;
+	height: 40px;
+    width: 100px;
+    line-height: 40px;
+    text-align: center;
+    cursor: pointer;
+    background: dodgerblue;
+    border-radius: 10px;
+    color: white;
+    font-size: 18px;
+    position: absolute;
+    right: 10%;
+    top: 10%;
+    font-weight: 700;
 	
 }
 .user-table{
-	margin:100px 0 120px 40px;
+	margin:40px 0 20px 40px;
 	box-shadow: 0 1px 2px 0 rgba(0,0,0,.1);
 	width: 90%;
 	text-align: center;
@@ -186,7 +184,7 @@ a:hover {
 	width: 99%;
 	height: 30px;
 	border-radius: 5px;
-	border: 2px solid #337AB7;
+	/* border: 2px solid #337AB7; */
 	padding-left: 6px;
 	
 }

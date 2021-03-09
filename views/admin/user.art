@@ -6,9 +6,32 @@
 		
 		
 		<title></title>
+		 <!-- Bootstrap CSS -->
+    	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
 
 		<link rel="stylesheet" type="text/css" href="css/style.css" />
 		<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
+			<style>
+		h3{
+			margin:20px 0;
+		}
+		.list-group a{
+			border:0;
+			background: #3c444d;
+			padding:15px 20px;
+		}
+		.list-group a:hover{
+			color: lightsteelblue;
+		}
+		.user-connect h2{
+			margin-top:20px
+		}
+		.user-connect table{
+			max-width:92%
+		}
+		
+		</style>
 	</head>
 
 	<body>
@@ -34,7 +57,7 @@
 						<a class="list-group-item" href="#"><i class="fa fa-cog fa-fw" aria-hidden="true"></i>&nbsp; 系统设置</a>
 					</li>
 					<li style="background: #353D44;">
-						<a class="list-group-item" href="#"><i class="fa fa-user-circle-o" aria-hidden="true"></i></i>&nbsp; 用户管理</a>
+						<a class="list-group-item active" href="#"><i class="fa fa-user-circle-o" aria-hidden="true"></i></i>&nbsp; 用户管理</a>
 					</li>
 				</ul>
 
@@ -46,11 +69,11 @@
 	<div class="user-connect">
 		<h2> 用户 </h2>
 
-		<div class="btn-tjyh">
+		<div class=" btn btn-primary" style="position: relative;left: 75%;font-size: 18px;">
 			 <a href="/admin/user-edit" style='color:white'>新增用户</a>
 		</div>
 
-		<table class="user-table" border="1px" cellpadding="0" cellspacing="0">
+		<table class="user-table table table-striped  table-bordered table-hover">
 			<thead>
 				<tr>
 					<th>ID</th>
@@ -70,9 +93,9 @@
 					<td>{{$value.role == 'admin' ? '超级管理员': '普通用户'}}</td>
 					<td>{{$value.state == 0 ? '启用': '禁用'}}</td>
 					<td>
-						<a href="/admin/user-edit?id={{@$value._id}}"><i class="fa fa-pencil-square-o" aria-hidden="true" style="color: cornflowerblue;"></i></a>
+						<a href="/admin/user-edit?id={{@$value._id}}"><i class="fa fa-pencil-square-o" aria-hidden="true" style="color: cornflowerblue;margin-right:20px" ></i></a>
 
-						<a href="#" style="color: red;" class= "user-tckbtn"><i class="fa fa-times-circle delete" aria-hidden="true" data-id="{{@$value._id}}"></i></a>
+						<a href="#" style="color: red;"  data-toggle="modal" data-target="#myModal"><i class="fa fa-times-circle delete" aria-hidden="true" data-id="{{@$value._id}}"></i></a>
 					</td>
 				</tr>
 				{{/each}}
@@ -80,18 +103,18 @@
 			</tbody>
 		</table>
 		<ul class="pagination">
-			<li style="display: <%=page-1 < 1 ? 'none' : 'inline' %>">
-				<a href="/admin/user?page=<%=page-1%>">
+			<li class="page-item" style="display: <%=page-1 < 1 ? 'none' : 'inline' %>">
+				<a href="/admin/user?page=<%=page-1%>" class="page-link">
 					<span>&laquo;</span>
 				</a>
 			</li>
 			<% for (var i = 1; i <= total; i++) { %>
-			<li>
-				<a href="/admin/user?page=<%=i %>">{{i}}</a>
+			<li class="page-item">
+				<a href="/admin/user?page=<%=i %>" class="page-link">{{i}}</a>
 			</li>
 			<% } %>
-			<li style="display: <%= page-0+1 > total ? 'none' : 'inline' %>">
-				<a href="/admin/user?page=<%=page-0+1%>">
+			<li class="page-item" style="display: <%= page-0+1 > total ? 'none' : 'inline' %>">
+				<a href="/admin/user?page=<%=page-0+1%>" class="page-link">
 					<span>&raquo;</span>
 				</a>
 			</li>
@@ -101,19 +124,33 @@
 
 </div>
 
-
-<div class="user-tck">
+<!-- 模态框 -->
+	<div  class="modal fade" id="myModal">
+	 <div class="modal-dialog modal-lg">
+   		 <div class="modal-content">
 			<form action="/admin/delete" method="get">
 
-			<h2>请确认</h2>
-			<p>您确定要删除这个用户吗?</p>
+			<!-- 模态框头部 -->
+      <div class="modal-header">
+       <h2>请确认</h2>
+      </div>
+
+		<!-- 模态框主体 -->
+      <div class="modal-body">
+      <p>您确定要删除这个用户吗?</p>
 			  <input type="hidden" name="id" id="deleteUserId">
-			<div>
-				<button type="button" class="user-tckqx">取消</button><button type="submit" class="user-tckqd">确定</button>
-			</div>
+      </div>
+	
+		<!-- 模态框底部 -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button><button type="submit" class="user-tckqd btn btn-primary">确定</button>
+      </div>
+			
 			
 			</form>
 		</div>
+	 </div>
+	</div>   
 		
 		<script src="js/jquery.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
@@ -133,7 +170,15 @@
 			})
 		</script>
 		
-		
+		  <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <!--依赖的jQuery-->
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <!--bootstrap组件的js-->
+    <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <!--bootstrap组件的js-->
+    <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
 	</body>
 
 </html>
